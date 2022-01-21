@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <!-- loading the folder static -->
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HMS</title>
+    {% include 'links.html' %}
+
+     <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!--<link rel = "stylesheet"
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">-->
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      </script>
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li> <a href="{% url 'home' %}" style="color: white;">Home</a></li>
+                <li> <a href="{% url 'profile' %}">Profile</a></li>
+                <li> <a href="{% url 'makeappointments' %}">Make Appointments</a></li>
+                <li> <a href="{% url 'viewappointments' %}">View Appointments</a></li>
+                <li> <a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i></a>
+                <h2 class="text-center">UPCOMING APPOINTMENTS</h2>
+                <div class="text-center" role="tablist" id="accordion-1">
+                    {% for i in upcomming_appointments %}
+                    <ul class="collapsible popout text-center" data-collapsible="accordion">
+                        <li class="card">
+                            <div class="card-header collapsible-header">
+                                <h5 style="color:blue;"><a><i class="fa fa-calendar-check-o"></i> {{ i.patientname }} appointment with {{ i.doctorname }} on {{i.appointmentdate}}</a></h5>
+                            </div>
+                            <div class="card-body collapsible-body">
+                                <table align="center" class="card-text" style="font-size: 19px;">
+                                    <tr>
+                                        <td>Doctor Name:</td>
+                                        <td>{{i.doctorname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patient Name:</td>
+                                        <td>{{i.patientname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Appointment Date:</td>
+                                        <td>{{i.appointmentdate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Appointment Time:</td>
+                                        <td>{{i.appointmenttime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Symptoms:</td>
+                                        <td>{{i.symptoms}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </div>
+                <h2 class="text-center">PREVIOUS APPOINTMENTS</h2>
+                <div class="text-center" role="tablist" id="accordion-2">
+                   {% for j in previous_appointments %}
+                    <ul class="collapsible popout text-center" data-collapsible="accordion">
+                        <li class="card">
+                            <div class="card-header collapsible-header">
+                                <h5 style="color:blue;"><a><i class="fa fa-calendar-check-o"></i> {{ j.patientname }} appointment with {{ j.doctorname }} on {{j.appointmentdate}}</a></h5>
+                            </div>
+                            <div class="card-body collapsible-body">
+                                <table align="center" class="card-text" style="font-size: 19px;">
+                                    <tr>
+                                        <td>Doctor Name:</td>
+                                        <td>{{j.doctorname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patient Name:</td>
+                                        <td>{{j.patientname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Appointment Date:</td>
+                                        <td>{{j.appointmentdate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Appointment Time:</td>
+                                        <td>{{j.appointmenttime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Symptoms:</td>
+                                        <td>{{j.symptoms}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prescription:</td>
+                                        <td>{{j.prescription}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+   {% include 'scripts.html' %}
+</body>
+
+</html>
